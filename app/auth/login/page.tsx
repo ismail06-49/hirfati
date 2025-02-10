@@ -1,26 +1,16 @@
-import { signIn } from '@/auth';
-import Image from 'next/image'
-import React from 'react'
-import { Button } from '@/components/ui/button';
-import { FcGoogle } from 'react-icons/fc';
+import { CardWrapper } from '@/components/auth/card-wrapper';
+import { LoginForm } from '@/components/auth/login-form'
 
 function Login() {
+
     return (
-        <div className='w-full h-screen'>
-            <div className='w-full h-screen flex flex-col justify-center items-center'>
-                <Image src='/logo.png' alt="logo" width={200} height={120} />
-                <h1>فين تقدر تلقى اي حرفة</h1>
-                <form action={async () => {
-                    "use server";
-                    await signIn('google')
-                }}>
-                    <Button type='submit'>
-                        <FcGoogle />
-                        تسجيل بحساب جوجل
-                    </Button>
-                </form>
-            </div>
-        </div>
+        <CardWrapper
+            headerLabel='مرحبا بعودتك'
+            backButtonLabel="ليس لديك حساب؟"
+            backButtonHref='/auth/register'
+        >
+            <LoginForm />
+        </CardWrapper>
     )
 }
 
