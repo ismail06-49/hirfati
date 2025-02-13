@@ -41,8 +41,8 @@ export const CardWrapper = ({
                         type='submit'
                         className='w-full'
                     >
-                        <FcGoogle />
                         تسجيل بحساب جوجل
+                        <FcGoogle />
                     </Button>
                 </form>
             </CardFooter>
