@@ -1,3 +1,5 @@
+'use client'
+
 import {
     Card,
     CardContent,
@@ -5,23 +7,25 @@ import {
     CardHeader
 } from '@/components/ui/card'
 import Image from 'next/image';
-import { signIn } from '@/auth';
 import { Button } from '@/components/ui/button';
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
+import { social } from '@/actions/social';
 
 interface CardwrapperProps {
     children: React.ReactNode;
     headerLabel: string;
     backButtonLabel: string;
     backButtonHref: string;
+    showSocial?: boolean;
 }
 
 export const CardWrapper = ({
     children,
     headerLabel,
     backButtonLabel,
-    backButtonHref
+    backButtonHref,
+    showSocial
 }: CardwrapperProps) => {
     return (
         <Card className='w-[400px] flex flex-col items-center justify-center shadow-md'>
@@ -32,20 +36,21 @@ export const CardWrapper = ({
             <CardContent className='w-full'>
                 {children}
             </CardContent>
-            <CardFooter className='w-full'>
-                <form className='w-full' action={async () => {
-                    "use server";
-                    await signIn('google')
-                }}>
-                    <Button
-                        type='submit'
-                        className='w-full'
-                    >
-                        تسجيل بحساب جوجل
-                        <FcGoogle />
-                    </Button>
-                </form>
-            </CardFooter>
+            {
+                showSocial && (
+                    <CardFooter className='w-full'>
+                        <form className='w-full' action={() =>{social()}}>
+                            <Button
+                                type='submit'
+                                className='w-full'
+                            >
+                                تسجيل بحساب جوجل
+                                <FcGoogle />
+                            </Button>
+                        </form>
+                    </CardFooter>
+                )
+            }
             <CardFooter>
                 <Button variant='link'>
                     <Link href={backButtonHref}>

@@ -8,6 +8,7 @@ export default function Register() {
             headerLabel='إنشاء حساب'
             backButtonLabel="هل لديك حساب بالفعل؟"
             backButtonHref='/auth/login'
+            showSocial= {true}
         >
             <RegisterForm />
         </CardWrapper>

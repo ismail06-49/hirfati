@@ -8,6 +8,7 @@ function Login() {
             headerLabel='مرحبا بعودتك'
             backButtonLabel="ليس لديك حساب؟"
             backButtonHref='/auth/register'
+            showSocial= {true}
         >
             <LoginForm />
         </CardWrapper>
