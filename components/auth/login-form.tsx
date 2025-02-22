@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button'
 import { FormError } from '@/components/form-error'
 import { FormSuccess } from '@/components/form-success'
 import { login } from '@/actions/login'
+import Link from 'next/link'
 
 export function LoginForm() {
 
@@ -39,8 +40,8 @@ export function LoginForm() {
         startTransition(() => {
             login(values)
                 .then((data) => {
-                    setError(data.error);
-                    setSuccess(data.success);
+                    setError(data?.error);
+                    setSuccess(data?.success);
             })
         })
     }
@@ -84,6 +85,16 @@ export function LoginForm() {
                                         type='password'
                                     />
                                 </FormControl>
+                                <Button
+                                    size='sm'
+                                    variant='link'
+                                    asChild
+                                    className='px-0'
+                                >
+                                    <Link href='/auth/reset'>
+                                        هل نسيت كلمة السر؟
+                                    </Link>
+                                </Button>
                                 <FormMessage />
                             </FormItem>
                         )}
