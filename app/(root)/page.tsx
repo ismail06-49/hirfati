@@ -1,15 +1,17 @@
-import { auth } from "@/auth";
+'use client';
+
 import Store from "@/components/Store";
 import Signin from "@/components/Signin";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
-export default async function Home() {
+export default function Home() {
 
-  const session = await auth();
+  const user = useCurrentUser();
 
   return (
-    <main className="flex h-screen flex-col items-center justify-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-400 to-slate-800">
-      <div>
-        {session && session?.user ? (
+    <main className="flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 md:p-8 lg:p-10">
+      <div className="w-full max-w-4xl">
+        {user ? (
           <Store />
           ) : (
           <Signin />
